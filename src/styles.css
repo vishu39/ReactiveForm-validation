@@ -1,1 +1,228 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --body-background: rgb(0, 0, 0);
+  --label-color: rgb(0, 0, 0);
+  --container-color: rgb(0, 0, 0);
+  --button-bgcolor: #02bfcb;
+  --button-color: rgb(8, 0, 0);
+  --shadow-color: var(--button-bgcolor);
+}
+html {
+  font-size: 62.5%;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: url(../../rF-val/src/assets/photo-1555475660-3df469f5d6d7.jfif);
+  background-size: cover;
+}
+/* form styling */
+.header {
+  width: 100%;
+  font-size: 2rem;
+  color: green;
+}
+@media screen and (min-width: 768px) {
+  .header {
+    font-size: 3rem;
+  }
+}
+.main {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  height: 100%;
+}
+.container {
+  opacity: 80%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  height: 100%;
+  width: 100%;
+}
+.m1 {
+  background: black;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  justify-content: center;
+}
+.he1 {
+  font-size: 1.5rem;
+  color: wheat;
+}
+@media screen and (min-width: 768px) {
+  .he1 {
+    font-size: 2.8rem;
+  }
+}
+.nd-cont {
+  padding: 3rem;
+}
+.m2 {
+  color: var(--label-color);
+  padding: 1rem;
+  background-color: white;
+}
+@media screen and (min-width: 650px) {
+  .container {
+    width: 70%;
+    grid-template-columns: repeat(2, 0.5fr);
+  }
+  .m1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.lab {
+  display: flex;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  font-weight: bolder;
+}
+.lab2 {
+  font-size: 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .lab {
+    font-size: 2rem;
+  }
+  .lab2 {
+    font-size: 2rem;
+  }
+}
+.inp {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  outline: 0;
+  border: 0.1px solid black;
+  font-size: 1.3rem;
+  height: 3rem;
+  border-radius: 20px;
+}
+.inp2 {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  outline: 0;
+  border: 0.1px solid black;
+  font-size: 1.3rem;
+  height: 3rem;
+  border-radius: 20px;
+}
+@media screen and (min-width: 500px) {
+  .inp {
+    font-size: 1.4rem;
+    height: 3rem;
+  }
+  .inp2 {
+    font-size: 1.4rem;
+    height: 3rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .inp {
+    font-size: 1.8rem;
+    height: 4rem;
+  }
+  .inp2 {
+    font-size: 1.8rem;
+    height: 4rem;
+  }
+}
+.btndiv {
+  margin-top: 1rem;
+  width: 100%;
+}
+.btn {
+  width: 50%;
+  height: 5rem;
+  padding: 1rem;
+  background: linear-gradient(45deg, red, black);
+  outline: 0;
+  cursor: pointer;
+  border-radius: 30px;
+  color: white;
+  font-size: 2rem;
+}
+.btn-login {
+  width: 80%;
+  height: 5rem;
+  padding: 1rem;
+  background: linear-gradient(180deg, black, white);
+  color: white;
+  outline: 0;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 30px;
+  font-size: 1.2rem;
+}
+@media screen and (min-width: 768px) {
+  .btn-login {
+    font-size: 2rem;
+  }
+}
+.chk {
+  margin-right: 1rem;
+}
+.first {
+  margin: 2rem;
+  color: white;
+  font-size: 3rem;
+}
+@media screen and (min-width: 768px) {
+  .first {
+    font-size: 5rem;
+  }
+}
+.img {
+  width: 95%;
+  height: 60%;
+  border-radius: 10px;
+}
+.add {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid red;
+}
+/*classes for validations  */
+.is-invalid {
+  border: 2px solid red;
+}
+.is-invalid2 {
+  background-color: red;
+}
+.text-danger {
+  color: red;
+  font-size: 1.3rem;
+}
+.plus {
+  border-radius: 30px;
+  margin: 1rem;
+  width: 30%;
+  padding: 1rem;
+  font-size: 2rem;
+  background: linear-gradient(45deg, red, black);
+  color: white;
+}
+.minus {
+  border-radius: 30px;
+  margin: 1rem;
+  width: 30%;
+  padding: 1rem;
+  font-size: 2rem;
+  background: linear-gradient(45deg, red, black);
+  color: white;
+}
+.captcha {
+  padding: 1rem;
+}

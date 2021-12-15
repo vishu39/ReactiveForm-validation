@@ -1,0 +1,313 @@
+<!--  -->
+<div class="main">
+  <div class="container">
+    <!--  -->
+    <div class="m1">
+      <!-- <img class="img" src="../../../assets/background-learner1.jpg" alt="" /> -->
+      <label class="first">User Registration Form</label>
+      <div class="nd-cont">
+        <p class="he1">
+          If you are already a register user then go to the login page
+        </p>
+        <button type="submit" class="btn-login">Login</button>
+      </div>
+    </div>
+    <!-- form start from here -->
+    <form class="m2" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label class="lab">Name</label>
+        <input
+          autocomplete="off"
+          [class.is-invalid]="Name?.invalid && Name?.touched"
+          formControlName="name"
+          class="inp"
+          type="text"
+        />
+        <div *ngIf="Name?.invalid && Name?.touched">
+          <small class="text-danger" *ngIf="Name?.errors?.['required']">
+            Please Enter a Name
+          </small>
+        </div>
+      </div>
+      <!--__________________________________________________________ Email input -->
+      <div>
+        <label class="lab">Email</label>
+        <input
+          autocomplete="off"
+          [class.is-invalid]="Email?.invalid && Email?.touched"
+          formControlName="email"
+          class="inp"
+          type="email"
+        />
+        <div *ngIf="Email?.invalid && Email?.touched">
+          <small class="text-danger" *ngIf="Email?.errors?.['required']">
+            Please Enter a Email
+          </small>
+          <small class="text-danger" *ngIf="Email?.errors?.['email']">
+            Please Enter a valid Email
+          </small>
+        </div>
+      </div>
+      <!--_______________________________________________________________________________________ Age input -->
+      <div>
+        <label class="lab">Age</label>
+        <input
+          autocomplete="off"
+          [class.is-invalid]="Age?.invalid && Age?.touched"
+          formControlName="age"
+          class="inp"
+          type="number"
+        />
+        <div *ngIf="Age?.invalid && Age?.touched">
+          <small class="text-danger" *ngIf="Age?.errors?.['required']">
+            Please Enter a Some Age
+          </small>
+        </div>
+      </div>
+      <!-- -->
+      <!--_-___________________________________ Phone Number______________________________________________________ -->
+      <div>
+        <label class="lab">Phone no</label>
+        <input
+          autocomplete="off"
+          [class.is-invalid]="Phone?.invalid && Phone?.touched"
+          formControlName="phone"
+          class="inp"
+          type="tel"
+          ng2TelInput
+          [ng2TelInputOptions]="{ initialCountry: 'in' }"
+          (countryChange)="onCountryChange($event)"
+        />
+
+        <div *ngIf="Phone?.invalid && Phone?.touched">
+          <small class="text-danger" *ngIf="Phone?.errors?.['required']">
+            Please Enter a phone number
+          </small>
+          <small class="text-danger" *ngIf="Phone?.errors?.['minlength']">
+            Phone number must be of 10 digits
+          </small>
+          <small class="text-danger" *ngIf="Phone?.errors?.['maxlength']">
+            Phone number can not be more than 10 digits
+          </small>
+        </div>
+      </div>
+      <!-- --------------------------------------------------------------------------------------------------- -->
+      <!-- -------------------------------------------------------------------------------------------------- -->
+      <!-- Occupation input -->
+      <div>
+        <label class="lab">Occupation</label>
+        <select
+          [class.is-invalid]="Occupation?.invalid && Occupation?.touched"
+          formControlName="occupation"
+          class="inp"
+        >
+          <option>Student</option>
+          <option>Doctor</option>
+          <option>Engineer</option>
+          <option>Teacher</option>
+        </select>
+        <div *ngIf="Occupation?.invalid && Occupation?.touched">
+          <small class="text-danger" *ngIf="Occupation?.errors?.['required']">
+            Please select any option
+          </small>
+        </div>
+      </div>
+      <!-- ************************************************************************************************************************************************** -->
+      <!-- Address field -->
+      <label class="lab">Address</label>
+      <button class="plus" (click)="addAlternateAddress()" type="button">
+        +
+      </button>
+      <div class="add" formGroupName="address">
+        <!-- Address Line1 -->
+        <div>
+          <label class="lab">Address line 1</label>
+          <input
+            autocomplete="off"
+            [class.is-invalid]="AddressLine1?.invalid && AddressLine1?.touched"
+            formControlName="addressLine1"
+            class="inp2"
+            type="text"
+          />
+        </div>
+        <!--Address Line 2  -->
+        <div>
+          <label class="lab">Address line 2</label>
+          <input
+            autocomplete="off"
+            [class.is-invalid]="AddressLine2?.invalid && AddressLine2?.touched"
+            formControlName="addressLine2"
+            class="inp2"
+            type="text"
+          />
+        </div>
+        <!--City  -->
+        <div>
+          <label class="lab">City</label>
+          <input
+            autocomplete="off"
+            [class.is-invalid]="City?.invalid && City?.touched"
+            formControlName="city"
+            class="inp2"
+            type="text"
+          />
+        </div>
+        <!-- State -->
+        <div>
+          <label class="lab"> State</label>
+          <input
+            autocomplete="off"
+            [class.is-invalid]="State?.invalid && State?.touched"
+            formControlName="state"
+            class="inp2"
+            type="text"
+          />
+        </div>
+        <!-- Postal Code -->
+        <div>
+          <label class="lab">Pin-Code</label>
+          <input
+            autocomplete="off"
+            [class.is-invalid]="Postal?.invalid && Postal?.touched"
+            formControlName="postalCode"
+            class="inp2"
+            type="tel"
+          />
+          <div *ngIf="Postal?.invalid">
+            <small class="text-danger" *ngIf="Postal?.errors?.['maxlength']">
+              pin code not more than 6 character
+            </small>
+          </div>
+        </div>
+      </div>
+      <!-- *****************************************************************************************************************************************88 -->
+      <!-- alternate address -->
+      <div
+        formArrayName="alternateAddress"
+        *ngFor="let addressForm of formArray.controls"
+      >
+        <label class="lab">Alternate Address</label>
+        <div class="add" [formGroup]="addressForm">
+          <!-- Address Line1 -->
+          <div>
+            <label class="lab">Address line 1</label>
+            <input
+              autocomplete="off"
+              [class.is-invalid]="
+                addressForm.get('addressLine1')?.invalid &&
+                addressForm.get('addressLine1')?.touched
+              "
+              formControlName="addressLine1"
+              class="inp2"
+              type="text"
+            />
+          </div>
+          <!--Address Line 2  -->
+          <div>
+            <label class="lab">Address line 2</label>
+            <input
+              autocomplete="off"
+              [class.is-invalid]="
+                addressForm.get('addressLine1')?.invalid &&
+                addressForm.get('addressLine2')?.touched
+              "
+              formControlName="addressLine2"
+              class="inp2"
+              type="text"
+            />
+          </div>
+          <!--City  -->
+          <div>
+            <label class="lab">City</label>
+            <input
+              autocomplete="off"
+              [class.is-invalid]="
+                addressForm.get('city')?.invalid &&
+                addressForm.get('city')?.touched
+              "
+              formControlName="city"
+              class="inp2"
+              type="text"
+            />
+          </div>
+          <!-- State -->
+          <div>
+            <label class="lab"> State</label>
+            <input
+              autocomplete="off"
+              [class.is-invalid]="
+                addressForm.get('state')?.invalid &&
+                addressForm.get('state')?.touched
+              "
+              formControlName="state"
+              class="inp2"
+              type="text"
+            />
+          </div>
+          <!-- Postal Code -->
+          <div>
+            <label class="lab">Pin-Code</label>
+            <input
+              autocomplete="off"
+              [class.is-invalid]="
+                addressForm.get('postalCode')?.invalid &&
+                addressForm.get('postalCode')?.touched
+              "
+              formControlName="postalCode"
+              class="inp2"
+              type="tel"
+            />
+            <div *ngIf="addressForm.get('postalCode')?.invalid">
+              <small
+                class="text-danger"
+                *ngIf="addressForm.get('postalCode')?.errors?.['maxlength']"
+              >
+                pin code not more than 6 character
+              </small>
+            </div>
+          </div>
+        </div>
+        <button class="minus" (click)="deleteAlternateAddress(i)" type="button">
+          -
+        </button>
+      </div>
+      <!-- ****************************************************************************************************************************************************8 -->
+      <!-- checkbox -->
+      <div class="chkdiv">
+        <input
+          (change)="onChecked($event.target)"
+          class="chk"
+          type="checkbox"
+        />
+        <label class="lab2">I agree terms and conditions</label>
+        <div *ngIf="CHK?.invalid">
+          <small class="text-danger" *ngIf="CHK?.errors?.['required']">
+            checkbox is required
+          </small>
+        </div>
+      </div>
+      <!-- capcha input -->
+      <div class="captcha">
+        <ngx-recaptcha2
+          #captchaElem
+          [siteKey]="siteKey"
+          formControlName="recaptcha"
+        >
+        </ngx-recaptcha2>
+        <div *ngIf="Recaptcha?.invalid">
+          <small class="text-danger" *ngIf="Recaptcha?.errors?.['required']">
+            Recaptcha is required
+          </small>
+        </div>
+      </div>
+      <!-- button div -->
+      <div class="btndiv">
+        <button [disabled]="!registrationForm.valid" class="btn" type="submit">
+          Submit Form
+        </button>
+      </div>
+      <!-- <h2>{{ registrationForm.value | json }}</h2> -->
+    </form>
+    <!--  -->
+  </div>
+</div>
